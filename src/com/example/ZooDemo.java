@@ -7,9 +7,10 @@ public class ZooDemo {
     public static void main(String[] args) {
         boolean menuLoop = true;
         System.out.println("Welcome to the Zoo");
+        Operations myOps = new Operations();
 
         while (menuLoop) {
-
+            myOps.menu();
         }
     }
 }
