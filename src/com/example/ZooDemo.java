@@ -10,7 +10,7 @@ public class ZooDemo {
         Operations myOps = new Operations();
 
         while (menuLoop) {
-            myOps.menu();
+            menuLoop = myOps.menu();
         }
     }
 }

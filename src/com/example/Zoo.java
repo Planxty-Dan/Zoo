@@ -12,6 +12,10 @@ public class Zoo {
         allOfThePens.add(thisPen);
     }
 
+    public ArrayList<Pen> getAllOfThePens() {
+        return allOfThePens;
+    }
+
     public Pen penSearch(String penName) {
         for (Pen currentPen : allOfThePens) {
             if (currentPen.getPenName().equalsIgnoreCase(penName))
@@ -23,5 +27,13 @@ public class Zoo {
 
     public void removePen(Pen penName) {
         allOfThePens.remove(penName);
+    }
+
+    public void putAnimalInPen(Pen thisPen, Animal thisAnimal) {
+        thisPen.addAnimal(thisAnimal);
+    }
+
+    public void putBabyAnimalInPen(Pen thisPen, BabyAnimal thisBabyAnimal) {
+        thisPen.addBabyAnimal(thisBabyAnimal);
     }
 }

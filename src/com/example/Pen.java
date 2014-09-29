@@ -10,12 +10,21 @@ public class Pen {
     ArrayList<BabyAnimal> allOfTheBabyAnimals = new ArrayList<BabyAnimal>();
 
     String penName;
-    Animal eachAnimal;
-    BabyAnimal eachBabyAnimal;
+    Animal animal;
+    BabyAnimal babyAnimal;
+
+    public Pen(String penName) {
+        this.penName = penName;
+    }
+
+    public String getPenName() {
+        return penName;
+    }
+
 
     public void addAnimal(Animal thisAnimal) {
         allOfTheAnimals.add(thisAnimal);
-        System.out.println(thisAnimal + " has been added.");
+        System.out.println(thisAnimal.getName() + " has been added.\n");
     }
 
     public Animal animalSearch(String animalName) {
@@ -33,7 +42,7 @@ public class Pen {
 
     public void addBabyAnimal(BabyAnimal thisBabyAnimal) {
         allOfTheBabyAnimals.add(thisBabyAnimal);
-        System.out.println(thisBabyAnimal + " has been added.");
+        System.out.println(thisBabyAnimal.getName() + " has been added.\n");
     }
 
     public BabyAnimal babyAnimalSearch(String babyAnimalName) {
@@ -49,11 +58,4 @@ public class Pen {
         allOfTheBabyAnimals.remove(thisBabyAnimal);
     }
 
-    public Pen(String penName) {
-        this.penName = penName;
-    }
-
-    public String getPenName() {
-        return penName;
-    }
 }

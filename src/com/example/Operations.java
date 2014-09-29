@@ -12,22 +12,21 @@ public class Operations {
     Zoo myZoo = new Zoo();
     Pen myPen = new Pen("");
 
-    public void menu() {
-        System.out.println("What would oyu like to do?\n" +
-                "1: Make a new pen" +
-                "2: Remove a pen" +
-                "3: Add a new animal" +
-                "4: Remove an animal" +
-                "5: Add a baby animal" +
-                "6: Remove a baby animal" +
-                "7: Put animal in pen" +
-                "8: View animals in a pen" +
-                "9: View all animals" +
-                "10: Exit");
+    public boolean menu() {
+        System.out.println("What would you like to do?\n" +
+                "1: Make a new pen\n" +
+                "2: Remove a pen\n" +
+                "3: Add a new animal\n" +
+                "4: Remove an animal\n" +
+                "5: Add a baby animal\n" +
+                "6: Remove a baby animal\n" +
+                "7: Put animal in pen\n" +
+                "8: View animals in a pen\n" +
+                "9: View all animals\n" +
+                "10: Exit\n");
 
         menuChoice = getNumbers();
-        menuSwitch(menuChoice);
-
+        return menuSwitch(menuChoice);
     }
     public int getNumbers() {
         Scanner getNumScan = new Scanner(System.in);
@@ -41,7 +40,7 @@ public class Operations {
                 getNumScan.nextLine();
             }
     }
-    public void menuSwitch(int menuChoice) {
+    public boolean menuSwitch(int menuChoice) {
         switch (menuChoice) {
             case 1: makePen();
                 break;
@@ -55,15 +54,15 @@ public class Operations {
                 break;
             case 6: removeBabyAnimal();
                 break;
-            case 7:
+            case 7: addAnimalToPenGetInfo();
                 break;
-            case 8:
+            case 8: displayPennedAnimals();
                 break;
-            case 9:
+            case 9: displayPennedAnimals();
+                displayHomelessAnimals();
                 break;
-            case 10:
-                break;
-        }
+            case 10: return false;
+        }return true;
     }
     public void makePen() {
         String penName;
@@ -145,7 +144,78 @@ public class Operations {
         babyAnimalName = myScan.nextLine();
         thisBabyAnimal = myPen.babyAnimalSearch(babyAnimalName);
         if (thisBabyAnimal != null)
-            myPen.removeAnimal(thisBabyAnimal);
+            myPen.removeBabyAnimal(thisBabyAnimal);
+    }
+
+    public void addAnimalToPenGetInfo() {
+        String animalName;
+        Pen thisPen;
+        Animal thisAnimal;
+        BabyAnimal thisBabyAnimal;
+        thisPen = findPen();
+        animalName = findAnimal();
+        thisAnimal = animalSearch(animalName);
+        thisBabyAnimal = babyAnimalSearch(animalName);
+        addAnimalToPen(thisAnimal, thisBabyAnimal, thisPen);
+    }
+    public void addAnimalToPen(Animal thisAnimal, BabyAnimal thisBabyAnimal, Pen thisPen) {
+        if(thisAnimal != null)
+            myZoo.putAnimalInPen(thisPen, thisAnimal);
+        else if(thisBabyAnimal != null)
+            myZoo.putBabyAnimalInPen(thisPen, thisBabyAnimal);
+        else
+            System.out.println("Could not find that animal");
+    }
+
+    public Pen findPen() {
+        String scanTemp;
+        Pen thisPen;
+        System.out.println("Which pen do you want to add an animal to?");
+        displayPens();
+        scanTemp = myScan.nextLine();
+        thisPen = myZoo.penSearch(scanTemp);
+        return thisPen;
+    }
+
+    public String findAnimal() {
+        String scanTemp;
+        System.out.println("Which animal do you wan to add?");
+        displayHomelessAnimals();
+        scanTemp = myScan.nextLine();
+        return scanTemp;
+    }
+    public Animal animalSearch(String animalName) {
+        Animal thisAnimal;
+        thisAnimal = myPen.animalSearch(animalName);
+        return thisAnimal;
+    }
+    public BabyAnimal babyAnimalSearch(String animalName) {
+        BabyAnimal thisBabyAnimal;
+        thisBabyAnimal = myPen.babyAnimalSearch(animalName);
+        return thisBabyAnimal;
+    }
+
+    public void displayPens() {
+        for (Pen currentPen: myZoo.allOfThePens)
+            System.out.println(currentPen.getPenName() + "\n");
+    }
+
+    public void displayPennedAnimals() {
+        for(Pen currentPen: myZoo.allOfThePens) {
+            System.out.println(currentPen.getPenName() + ": \n");
+            for (Animal currentAnimal: currentPen.allOfTheAnimals)
+                System.out.println(currentAnimal.getName() + "\n");
+            for (BabyAnimal currentBabyAnimal: currentPen.allOfTheBabyAnimals)
+                System.out.println(currentBabyAnimal.getName() + "\n");
+        }
+    }
+
+    public void displayHomelessAnimals() {
+        System.out.println("Homeless animals that are roaming the zoo:\n");
+        for (Animal currentAnimal: myPen.allOfTheAnimals)
+            System.out.println(currentAnimal.getName());
+        for (BabyAnimal currentBabyAnimal: myPen.allOfTheBabyAnimals)
+            System.out.println(currentBabyAnimal.getName());
     }
 }
 
