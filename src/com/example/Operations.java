@@ -160,9 +160,15 @@ public class Operations {
     }
     public void addAnimalToPen(Animal thisAnimal, BabyAnimal thisBabyAnimal, Pen thisPen) {
         if(thisAnimal != null)
-            myZoo.putAnimalInPen(thisPen, thisAnimal);
+            if (tooManyAnimalsCheck(thisPen))
+                System.out.println("Sorry, you can't have more than 4 animals in a pen.");
+            else
+                myZoo.putAnimalInPen(thisPen, thisAnimal);
         else if(thisBabyAnimal != null)
-            myZoo.putBabyAnimalInPen(thisPen, thisBabyAnimal);
+            if (tooManyBabyAnimalsCheck(thisPen))
+                System.out.println("Sorry, you can't have more than 10 babies in a pen.");
+            else
+                myZoo.putBabyAnimalInPen(thisPen, thisBabyAnimal);
         else
             System.out.println("Could not find that animal");
     }
@@ -193,6 +199,20 @@ public class Operations {
         BabyAnimal thisBabyAnimal;
         thisBabyAnimal = myPen.babyAnimalSearch(animalName);
         return thisBabyAnimal;
+    }
+
+    public boolean tooManyAnimalsCheck(Pen thisPen) {
+        if (thisPen.allOfTheAnimals.size() > 3)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean tooManyBabyAnimalsCheck(Pen thisPen) {
+        if (thisPen.allOfTheBabyAnimals.size() > 9)
+            return true;
+        else
+            return false;
     }
 
     public void displayPens() {
