@@ -224,18 +224,28 @@ public class Operations {
         for(Pen currentPen: myZoo.allOfThePens) {
             System.out.println(currentPen.getPenName() + ": \n");
             for (Animal currentAnimal: currentPen.allOfTheAnimals)
-                System.out.println(currentAnimal.getName() + "\n");
+                System.out.println(currentAnimal.getName() + "\n" +
+                        "\t" + currentAnimal.getSpecies() + "\n" +
+                        "\t" + currentAnimal.getGender());
             for (BabyAnimal currentBabyAnimal: currentPen.allOfTheBabyAnimals)
-                System.out.println(currentBabyAnimal.getName() + "\n");
+                System.out.println(currentBabyAnimal.getName() + "\n" +
+                        "\t" + currentBabyAnimal.getSpecies() + "\n" +
+                        "\t" + currentBabyAnimal.getGender() + "\n" +
+                        "\tCuteness rating: " + currentBabyAnimal.getCutenessFactor());
         }
     }
 
     public void displayHomelessAnimals() {
         System.out.println("Homeless animals that are roaming the zoo:\n");
         for (Animal currentAnimal: myPen.allOfTheAnimals)
-            System.out.println(currentAnimal.getName());
+            System.out.println(currentAnimal.getName() + "\n" +
+                    "\t" + currentAnimal.getSpecies() + "\n" +
+                    "\t" + currentAnimal.getGender());
         for (BabyAnimal currentBabyAnimal: myPen.allOfTheBabyAnimals)
-            System.out.println(currentBabyAnimal.getName());
+            System.out.println(currentBabyAnimal.getName() + "\n" +
+                    "\t" + currentBabyAnimal.getSpecies() + "\n" +
+                    "\t" + currentBabyAnimal.getGender() + "\n" +
+                    "\tCuteness rating: " + currentBabyAnimal.getCutenessFactor());
     }
 }
 

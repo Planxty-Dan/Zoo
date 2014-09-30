@@ -13,4 +13,7 @@ public class BabyAnimal extends Animal {
         this.cutenessFactor = cutenessFactor;
     }
 
+    public int getCutenessFactor() {
+        return cutenessFactor;
+    }
 }
