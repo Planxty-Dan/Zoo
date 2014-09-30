@@ -31,8 +31,10 @@ public class Pen {
         for (Animal currentAnimal : allOfTheAnimals) {
             if (currentAnimal.getName().equalsIgnoreCase(animalName))
                 return currentAnimal;
+            else {
+                System.out.println(animalName + " was not found");
+            }
         }
-        System.out.println(animalName + " was not found");
         return null;
     }
 
@@ -49,8 +51,10 @@ public class Pen {
         for (BabyAnimal currentBabyAnimal : allOfTheBabyAnimals) {
             if (currentBabyAnimal.getName().equalsIgnoreCase(babyAnimalName))
                 return currentBabyAnimal;
+            else {
+                System.out.println(babyAnimalName + " was not found");
+            }
         }
-        System.out.println(babyAnimalName + " was not found");
         return null;
     }
 

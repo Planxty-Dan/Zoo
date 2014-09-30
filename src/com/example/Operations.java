@@ -172,7 +172,7 @@ public class Operations {
                         "Add a male and female to the pen.");
             else
                 myZoo.putBabyAnimalInPen(thisPen, thisBabyAnimal);
-        else
+        else if((thisAnimal == null) && (thisBabyAnimal == null))
             System.out.println("Could not find that animal");
     }
 
