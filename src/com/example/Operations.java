@@ -167,6 +167,9 @@ public class Operations {
         else if(thisBabyAnimal != null)
             if (tooManyBabyAnimalsCheck(thisPen))
                 System.out.println("Sorry, you can't have more than 10 babies in a pen.");
+            else if (babyNeedsSomeParents(thisPen))
+                System.out.println("That baby needs a mom and dad before you can add it to the pen.\n" +
+                        "Add a male and female to the pen.");
             else
                 myZoo.putBabyAnimalInPen(thisPen, thisBabyAnimal);
         else
@@ -213,6 +216,21 @@ public class Operations {
             return true;
         else
             return false;
+    }
+
+    public boolean babyNeedsSomeParents(Pen thisPen) {
+        boolean daddy = false;
+        for (Animal currentAnimal: thisPen.allOfTheAnimals) {
+            if (currentAnimal.getGender().equalsIgnoreCase("male"))
+                daddy = true;
+        }
+        if (daddy == true) {
+            for (Animal currentAnimal: thisPen.allOfTheAnimals) {
+                if (currentAnimal.getGender().equalsIgnoreCase("female"))
+                    return false;
+            }
+        }
+        return true;
     }
 
     public void displayPens() {
