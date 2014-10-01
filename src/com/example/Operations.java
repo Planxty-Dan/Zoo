@@ -28,6 +28,7 @@ public class Operations {
         menuChoice = getNumbers();
         return menuSwitch(menuChoice);
     }
+
     public int getNumbers() {
         Scanner getNumScan = new Scanner(System.in);
         for (; ; )
@@ -40,6 +41,7 @@ public class Operations {
                 getNumScan.nextLine();
             }
     }
+
     public boolean menuSwitch(int menuChoice) {
         switch (menuChoice) {
             case 1: makePen();
@@ -64,6 +66,7 @@ public class Operations {
             case 10: return false;
         }return true;
     }
+
     public void makePen() {
         String penName;
         System.out.println("What do you want to name the pen?");
@@ -73,15 +76,29 @@ public class Operations {
         System.out.println(penName + " has been added.\n");
         menu();
     }
+
     public void removePen() {
         String penName;
         Pen thisPen;
         System.out.println("What is the name of the pen you want to delete?");
         penName = myScan.nextLine();
         thisPen = myZoo.penSearch(penName);
+        deadAnimals(thisPen);
         if (thisPen != null)
             myZoo.removePen(thisPen);
     }
+
+    public void deadAnimals(Pen thisPen) {
+        if ((thisPen.allOfTheAnimals.size() > 0) || (thisPen.allOfTheBabyAnimals.size() > 0)) {
+            System.out.println("You destroyed the pen with the following animals in it:");
+            for (Animal currentAnimal: thisPen.allOfTheAnimals)
+                System.out.println(currentAnimal.getName());
+            for (BabyAnimal currentBabyAnimal: thisPen.allOfTheBabyAnimals)
+                System.out.println(currentBabyAnimal.getName());
+            System.out.println("They are now dead.");
+        }
+    }
+
     public void addAnimal() {
         String animalSpecies;
         String animalName;
@@ -158,6 +175,7 @@ public class Operations {
         thisBabyAnimal = babyAnimalSearch(animalName);
         addAnimalToPen(thisAnimal, thisBabyAnimal, thisPen);
     }
+
     public void addAnimalToPen(Animal thisAnimal, BabyAnimal thisBabyAnimal, Pen thisPen) {
         if(thisAnimal != null)
             if (tooManyAnimalsCheck(thisPen))
